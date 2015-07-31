@@ -1,7 +1,7 @@
 /**
- *  ‰w‚·‚Ï‚ ‚Æ Web ƒT[ƒrƒX
- *  Œo˜H’Tõƒp[ƒc
- *  ƒTƒ“ƒvƒ‹ƒR[ƒh
+ *  é§…ã™ã±ã‚ã¨ Web ã‚µãƒ¼ãƒ“ã‚¹
+ *  çµŒè·¯æ¢ç´¢ãƒ‘ãƒ¼ãƒ„
+ *  ã‚µãƒ³ãƒ—ãƒ«ã‚³ãƒ¼ãƒ‰
  *  http://webui.ekispert.com/doc/
  *  
  *  Version:2014-08-11
@@ -11,11 +11,11 @@
 
 var expGuiCourseLight = function (pObject, config) {
     /*
-    * WebƒT[ƒrƒX‚Ìİ’è
+    * Webã‚µãƒ¼ãƒ“ã‚¹ã®è¨­å®š
     */
     var apiURL = "http://api.ekispert.com/";
     /*
-    * GETƒpƒ‰ƒ[ƒ^‚©‚çƒL[‚Ìİ’è
+    * GETãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ã‚­ãƒ¼ã®è¨­å®š
     */
     var key;
     var scripts = document.getElementsByTagName("script");
@@ -37,21 +37,21 @@ var expGuiCourseLight = function (pObject, config) {
     }
 
     /*
-    * •Ï”ŒS
+    * å¤‰æ•°éƒ¡
     */
-    var searchObj; // ’TõğŒ‚ÌƒIƒuƒWƒFƒNƒg
-    var resultObj; // ’TõŒ‹‰Ê‚ÌƒŠƒNƒGƒXƒgƒIƒuƒWƒFƒNƒg
-    var result; // ’TõŒ‹‰ÊƒIƒuƒWƒFƒNƒg
-    var callbackFunction; // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ìİ’è
+    var searchObj; // æ¢ç´¢æ¡ä»¶ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+    var resultObj; // æ¢ç´¢çµæœã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+    var result; // æ¢ç´¢çµæœã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+    var callbackFunction; // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®è¨­å®š
 
     /*
-    * ’TõÀs
+    * æ¢ç´¢å®Ÿè¡Œ
     */
     function search(searchObject, callback) {
         if (typeof searchObject == "string") {
-            // ’TõƒIƒuƒWƒFƒNƒg‚ğ¶¬
+            // æ¢ç´¢ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
             searchObj = createSearchInterface();
-            // ƒpƒ‰ƒ[ƒ^‚ğ‰ğÍ
+            // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è§£æ
             var tmpParamList = searchObject.split('&');
             for (var i = 0; i < tmpParamList.length; i++) {
                 var tmpParam = tmpParamList[i].split('=');
@@ -91,10 +91,10 @@ var expGuiCourseLight = function (pObject, config) {
                 }
             }
         } else {
-            // ’TõƒIƒuƒWƒFƒNƒg‚ğw’è
+            // æ¢ç´¢ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®š
             searchObj = searchObject;
         }
-        // ’TõƒIƒuƒWƒFƒNƒg‚ğ•¶š—ñ‚É•ÏŠ·
+        // æ¢ç´¢ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ–‡å­—åˆ—ã«å¤‰æ›
         var searchWord = "";
         if (typeof searchObj.getFrom() != 'undefined') {
             searchWord += "&from=" + encodeURIComponent(searchObj.getFrom());
@@ -126,25 +126,25 @@ var expGuiCourseLight = function (pObject, config) {
         if (typeof searchObj.getBus() != 'undefined') {
             searchWord += "&bus=" + searchObj.getBus();
         }
-        // ’Tõ•¶š—ñ‚Ì¶¬
+        // æ¢ç´¢æ–‡å­—åˆ—ã®ç”Ÿæˆ
         var url = apiURL + "v1/json/search/course/light?key=" + key + "&" + searchWord;
-        // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ìİ’è
+        // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®è¨­å®š
         callbackFunction = callback;
-        //’TõÀs’†‚ÍƒLƒƒƒ“ƒZƒ‹
+        //æ¢ç´¢å®Ÿè¡Œä¸­ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
         if (typeof resultObj != 'undefined') {
             resultObj.abort();
         }
         var JSON_object = {};
         if (window.XDomainRequest) {
-            // IE—p
+            // IEç”¨
             resultObj = new XDomainRequest();
             resultObj.onload = function () {
-                // OK‚Ìˆ—
+                // OKæ™‚ã®å‡¦ç†
                 JSON_object = JSON.parse(resultObj.responseText);
                 setRooteUrl(JSON_object);
             };
             resultObj.onerror = function () {
-                // ƒGƒ‰[‚Ìˆ—
+                // ã‚¨ãƒ©ãƒ¼æ™‚ã®å‡¦ç†
                 if (typeof callbackFunction == 'function') {
                     callbackFunction(false);
                 }
@@ -154,11 +154,11 @@ var expGuiCourseLight = function (pObject, config) {
             resultObj.onreadystatechange = function () {
                 var done = 4, ok = 200;
                 if (resultObj.readyState == done && resultObj.status == ok) {
-                    // OK‚Ìˆ—
+                    // OKæ™‚ã®å‡¦ç†
                     JSON_object = JSON.parse(resultObj.responseText);
                     setRooteUrl(JSON_object);
                 } else if (resultObj.readyState == done && resultObj.status != ok) {
-                    // ƒGƒ‰[‚Ìˆ—
+                    // ã‚¨ãƒ©ãƒ¼æ™‚ã®å‡¦ç†
                     if (typeof callbackFunction == 'function') {
                         callbackFunction(false);
                     }
@@ -170,17 +170,17 @@ var expGuiCourseLight = function (pObject, config) {
     }
 
     /*
-    * JSON‚ğ‰ğÍ‚µ‚ÄŒ‹‰Ê‚ğo—Í
+    * JSONã‚’è§£æã—ã¦çµæœã‚’å‡ºåŠ›
     */
     function setRooteUrl(requestObject) {
         result = requestObject;
         if (typeof result.ResultSet.ResourceURI == 'undefined') {
-            // ¸”s
+            // å¤±æ•—
             if (typeof callbackFunction == 'function') {
                 callbackFunction(false);
             }
         } else {
-            // ¬Œ÷
+            // æˆåŠŸ
             if (typeof callbackFunction == 'function') {
                 callbackFunction(true);
             }
@@ -188,7 +188,7 @@ var expGuiCourseLight = function (pObject, config) {
     }
 
     /*
-    * ŠÂ‹«İ’è
+    * ç’°å¢ƒè¨­å®š
     */
     function setConfigure(name, value) {
         if (name.toLowerCase() == String("apiURL").toLowerCase()) {
@@ -197,17 +197,17 @@ var expGuiCourseLight = function (pObject, config) {
     }
 
     /*
-    * ’TõƒIƒuƒWƒFƒNƒg‚ÌƒCƒ“ƒ^[ƒtƒF[ƒX‚ğ•Ô‚·
+    * æ¢ç´¢ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’è¿”ã™
     */
     function createSearchInterface() {
         return new searchInterface();
     };
 
     /*
-    * ’TõƒCƒ“ƒ^[ƒtƒF[ƒXƒIƒuƒWƒFƒNƒg
+    * æ¢ç´¢ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
     */
     function searchInterface() {
-        // ƒf[ƒ^ƒŠƒXƒg
+        // ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆ
         var from;
         var to;
         var via;
@@ -218,53 +218,53 @@ var expGuiCourseLight = function (pObject, config) {
         var shinkansen;
         var limitedExpress;
         var bus;
-        // ŠÖ”ƒŠƒXƒg
-        // fromİ’è
+        // é–¢æ•°ãƒªã‚¹ãƒˆ
+        // fromè¨­å®š
         function setFrom(value) { from = value; };
         function getFrom() { return from; };
         this.setFrom = setFrom;
         this.getFrom = getFrom;
-        // toİ’è
+        // toè¨­å®š
         function setTo(value) { to = value; };
         function getTo() { return to; };
         this.setTo = setTo;
         this.getTo = getTo;
-        // viaİ’è
+        // viaè¨­å®š
         function setVia(value) { via = value; };
         function getVia() { return via; };
         this.setVia = setVia;
         this.getVia = getVia;
-        // Dateİ’è
+        // Dateè¨­å®š
         function setDate(value) { date = value; };
         function getDate() { return date; };
         this.setDate = setDate;
         this.getDate = getDate;
-        // Timeİ’è
+        // Timeè¨­å®š
         function setTime(value) { time = value; };
         function getTime() { return time; };
         this.setTime = setTime;
         this.getTime = getTime;
-        // SearchTypeİ’è
+        // SearchTypeè¨­å®š
         function setSearchType(value) { searchType = value; };
         function getSearchType() { return searchType; };
         this.setSearchType = setSearchType;
         this.getSearchType = getSearchType;
-        // planeİ’è
+        // planeè¨­å®š
         function setPlane(value) { plane = value; };
         function getPlane() { return plane; };
         this.setPlane = setPlane;
         this.getPlane = getPlane;
-        // shinkansenİ’è
+        // shinkansenè¨­å®š
         function setShinkansen(value) { shinkansen = value; };
         function getShinkansen() { return shinkansen; };
         this.setShinkansen = setShinkansen;
         this.getShinkansen = getShinkansen;
-        // limitedExpressİ’è
+        // limitedExpressè¨­å®š
         function setLimitedExpress(value) { limitedExpress = value; };
         function getLimitedExpress() { return limitedExpress; };
         this.setLimitedExpress = setLimitedExpress;
         this.getLimitedExpress = getLimitedExpress;
-        // busİ’è
+        // busè¨­å®š
         function setBus(value) { bus = value; };
         function getBus() { return bus; };
         this.setBus = setBus;
@@ -272,7 +272,7 @@ var expGuiCourseLight = function (pObject, config) {
     };
 
     /*
-    * Roote‚ÌURL‚ğæ“¾
+    * Rooteã®URLã‚’å–å¾—
     */
     function getResourceURI() {
         if (typeof result != 'undefined') {
@@ -283,7 +283,7 @@ var expGuiCourseLight = function (pObject, config) {
     }
 
     /*
-    * —˜—p‚Å‚«‚éŠÖ”ƒŠƒXƒg
+    * åˆ©ç”¨ã§ãã‚‹é–¢æ•°ãƒªã‚¹ãƒˆ
     */
     this.search = search;
     this.createSearchInterface = createSearchInterface;
@@ -291,7 +291,7 @@ var expGuiCourseLight = function (pObject, config) {
     this.getResourceURI = getResourceURI;
 
     /*
-    * ’è”ƒŠƒXƒg
+    * å®šæ•°ãƒªã‚¹ãƒˆ
     */
     this.SEARCHTYPE_DEPARTURE = "departure";
     this.SEARCHTYPE_ARRIVAL = "arrival";

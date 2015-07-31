@@ -1,7 +1,7 @@
 /**
- *  ‰w‚·‚Ï‚ ‚Æ Web ƒT[ƒrƒX
- *  ‰wî•ñƒp[ƒc
- *  ƒTƒ“ƒvƒ‹ƒR[ƒh
+ *  é§…ã™ã±ã‚ã¨ Web ã‚µãƒ¼ãƒ“ã‚¹
+ *  é§…æƒ…å ±ãƒ‘ãƒ¼ãƒ„
+ *  ã‚µãƒ³ãƒ—ãƒ«ã‚³ãƒ¼ãƒ‰
  *  http://webui.ekispert.com/doc/
  *  
  *  Version:2013-09-13
@@ -11,12 +11,12 @@
 
 var expGuiStationInfo = function (pObject, config) {
     /*
-    * WebƒT[ƒrƒX‚Ìİ’è
+    * Webã‚µãƒ¼ãƒ“ã‚¹ã®è¨­å®š
     */
     var apiURL = "http://api.ekispert.com/";
 
     /*
-    * GETƒpƒ‰ƒ[ƒ^‚©‚çƒL[‚Ìİ’è
+    * GETãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ã‚­ãƒ¼ã®è¨­å®š
     */
     var key;
     var scripts = document.getElementsByTagName("script");
@@ -37,7 +37,7 @@ var expGuiStationInfo = function (pObject, config) {
     }
 
     /*
-    * •Ï”ŒS
+    * å¤‰æ•°éƒ¡
     */
     var stationList;
     var railInformationList;
@@ -46,15 +46,15 @@ var expGuiStationInfo = function (pObject, config) {
     var welfareInformationList;
     var httpObj;
     var tmpUrl;
-    var limit = 100; //ˆê“x‚Éæ“¾‚·‚éƒf[ƒ^‚ÌãŒÀ
-    // İ’è
+    var limit = 100; //ä¸€åº¦ã«å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ä¸Šé™
+    // è¨­å®š
     var corporationBind;
     var type;
     var prefectureCode;
-    var callbackFunction; // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ìİ’è
+    var callbackFunction; // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®è¨­å®š
 
     /*
-    * ‰w‚ÌŒŸõ
+    * é§…ã®æ¤œç´¢
     */
     function searchStation(lati, longi, gcs, param1, param2) {
         var url = apiURL + "v1/json/geo/station?key=" + key;
@@ -64,9 +64,9 @@ var expGuiStationInfo = function (pObject, config) {
         if (typeof corporationBind != 'undefined') {
             url += "&corporationBind=" + corporationBind;
         }
-        // ˆÜ“xŒo“x
+        // ç·¯åº¦çµŒåº¦
         var geoPoint = lati + "," + longi;
-        // ‘ª’nŒn
+        // æ¸¬åœ°ç³»
         geoPoint += "," + gcs;
         if (typeof param1 == 'undefined') {
             callbackFunction = undefined;
@@ -78,24 +78,24 @@ var expGuiStationInfo = function (pObject, config) {
                 callbackFunction = undefined;
             }
         } else {
-            // ”¼Œa
+            // åŠå¾„
             geoPoint += "," + param1;
             callbackFunction = param2;
         }
         url += "&geoPoint=" + geoPoint;
         stationList = new Array();
         tmpUrl = url;
-        // ’ÊM
+        // é€šä¿¡
         request(url);
     }
 
     /*
-    * ‰w‚ÌŒŸõ
+    * é§…ã®æ¤œç´¢
     */
     function getStation(station, callback) {
         var url = apiURL + "v1/json/station?key=" + key;
         if (isNaN(station)) {
-            // ‰w–¼
+            // é§…å
             url += "&name=" + encodeURIComponent(station);
             if (typeof type != 'undefined') {
                 url += "&type=" + type;
@@ -107,32 +107,32 @@ var expGuiStationInfo = function (pObject, config) {
                 url += "&prefectureCode=" + prefectureCode;
             }
         } else {
-            // ‰wƒR[ƒh
+            // é§…ã‚³ãƒ¼ãƒ‰
             url += "&code=" + station;
         }
         callbackFunction = callback;
         stationList = new Array();
         tmpUrl = url;
-        // ’ÊM
+        // é€šä¿¡
         request(url);
     }
 
     /*
-    * ‹Œ‰w‚ÌŒŸõ
+    * æ—§é§…ã®æ¤œç´¢
     */
     function getStationOldName(oldName, callback) {
         var url = apiURL + "v1/json/station?key=" + key;
-        // ‰w–¼
+        // é§…å
         url += "&oldName=" + encodeURIComponent(oldName);
         callbackFunction = callback;
         stationList = new Array();
         tmpUrl = url;
-        // ’ÊM
+        // é€šä¿¡
         request(url);
     }
 
     /*
-    * ‰w‚Ì‘Sæ“¾
+    * é§…ã®å…¨å–å¾—
     */
     function getAllStation(callback) {
         var url = apiURL + "v1/json/station?key=" + key;
@@ -148,28 +148,28 @@ var expGuiStationInfo = function (pObject, config) {
         callbackFunction = callback;
         stationList = new Array();
         tmpUrl = url;
-        // ’ÊM
+        // é€šä¿¡
         request(url);
     }
 
     /*
-    * w’è‚³‚ê‚½URL‚ğƒR[ƒ‹‚·‚éŠÖ”
+    * æŒ‡å®šã•ã‚ŒãŸURLã‚’ã‚³ãƒ¼ãƒ«ã™ã‚‹é–¢æ•°
     */
     function request(url) {
         if (typeof httpObj != 'undefined') {
             httpObj.abort();
         }
-        // ’ÊM
+        // é€šä¿¡
         var JSON_object = {};
         if (window.XDomainRequest) {
-            // IE—p
+            // IEç”¨
             httpObj = new XDomainRequest();
             httpObj.onload = function () {
                 JSON_object = JSON.parse(httpObj.responseText);
                 setStationList(JSON_object);
             };
             httpObj.onerror = function () {
-                // ƒGƒ‰[‚Ìˆ—
+                // ã‚¨ãƒ©ãƒ¼æ™‚ã®å‡¦ç†
                 if (typeof callbackFunction == 'function') {
                     callbackFunction(false);
                 }
@@ -182,7 +182,7 @@ var expGuiStationInfo = function (pObject, config) {
                     JSON_object = JSON.parse(httpObj.responseText);
                     setStationList(JSON_object);
                 } else if (httpObj.readyState == done && httpObj.status != ok) {
-                    // ƒGƒ‰[‚Ìˆ—
+                    // ã‚¨ãƒ©ãƒ¼æ™‚ã®å‡¦ç†
                     if (typeof callbackFunction == 'function') {
                         callbackFunction(false);
                     }
@@ -194,18 +194,18 @@ var expGuiStationInfo = function (pObject, config) {
     }
 
     /*
-    * ‰wˆê——‚Ì‰ğÍ
+    * é§…ä¸€è¦§ã®è§£æ
     */
     function setStationList(json) {
         var tmp_stationList = json;
         if (typeof tmp_stationList.ResultSet.Point == 'undefined') {
-            // ¸”s
+            // å¤±æ•—
             if (typeof callbackFunction == 'function') {
                 callbackFunction(false);
             }
         } else if (typeof tmp_stationList.ResultSet.Point.length == 'undefined') {
             stationList.push(setStationObject(tmp_stationList.ResultSet.Point));
-            // ¬Œ÷
+            // æˆåŠŸ
             if (typeof callbackFunction == 'function') {
                 callbackFunction(true);
             }
@@ -214,18 +214,18 @@ var expGuiStationInfo = function (pObject, config) {
                 stationList.push(setStationObject(tmp_stationList.ResultSet.Point[i]));
             }
             if (typeof tmp_stationList.ResultSet.max != 'undefined' && typeof tmp_stationList.ResultSet.offset != 'undefined') {
-                // I‚í‚Á‚Ä‚¢‚È‚¢ê‡‚Íƒ‹[ƒv‚·‚é
+                // çµ‚ã‚ã£ã¦ã„ãªã„å ´åˆã¯ãƒ«ãƒ¼ãƒ—ã™ã‚‹
                 if (parseInt(tmp_stationList.ResultSet.max) > (parseInt(tmp_stationList.ResultSet.offset) + tmp_stationList.ResultSet.Point.length)) {
                     var offset = parseInt(tmp_stationList.ResultSet.offset) + limit;
                     request(tmpUrl + "&offset=" + offset);
                 } else {
-                    // ¬Œ÷
+                    // æˆåŠŸ
                     if (typeof callbackFunction == 'function') {
                         callbackFunction(true);
                     }
                 }
             } else {
-                // ¬Œ÷
+                // æˆåŠŸ
                 if (typeof callbackFunction == 'function') {
                     callbackFunction(true);
                 }
@@ -234,7 +234,7 @@ var expGuiStationInfo = function (pObject, config) {
     }
 
     /*
-    * ’n“_ƒIƒuƒWƒFƒNƒg‚Ìì¬
+    * åœ°ç‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
     */
     function setStationObject(stationObj) {
         var tmp_station = new Object();
@@ -250,20 +250,20 @@ var expGuiStationInfo = function (pObject, config) {
             tmp_station.type = stationObj.Station.Type;
         }
         if (typeof stationObj.GeoPoint != 'undefined') {
-            // ˆÜ“x
+            // ç·¯åº¦
             tmp_station.lati = stationObj.GeoPoint.lati;
             tmp_station.lati_d = stationObj.GeoPoint.lati_d;
-            // Œo“x
+            // çµŒåº¦
             tmp_station.longi = stationObj.GeoPoint.longi;
             tmp_station.longi_d = stationObj.GeoPoint.longi_d;
             // gcs
             tmp_station.gcs = stationObj.GeoPoint.gcs;
         }
-        //Œ§ƒR[ƒh
+        //çœŒã‚³ãƒ¼ãƒ‰
         if (typeof stationObj.Prefecture != 'undefined') {
             tmp_station.kenCode = parseInt(stationObj.Prefecture.code);
         }
-        //‹——£
+        //è·é›¢
         if (typeof stationObj.Distance != 'undefined') {
             tmp_station.distance = parseInt(stationObj.Distance);
         }
@@ -271,10 +271,10 @@ var expGuiStationInfo = function (pObject, config) {
     }
 
     /*
-    * ‰wî•ñ‚Ìæ“¾
+    * é§…æƒ…å ±ã®å–å¾—
     */
     function getPointObject(station) {
-        // ƒIƒuƒWƒFƒNƒgƒRƒs[—pƒCƒ“ƒ‰ƒCƒ“ŠÖ”
+        // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚³ãƒ”ãƒ¼ç”¨ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³é–¢æ•°
         function clone(obj) {
             var f = function () { };
             f.prototype = obj;
@@ -292,7 +292,7 @@ var expGuiStationInfo = function (pObject, config) {
     }
 
     /*
-    * ‰wƒŠƒXƒg‚Ìæ“¾
+    * é§…ãƒªã‚¹ãƒˆã®å–å¾—
     */
     function getStationList() {
         if (typeof stationList != 'undefined') {
@@ -307,7 +307,7 @@ var expGuiStationInfo = function (pObject, config) {
     }
 
     /*
-    * ‰w‚Ì•t‰Áî•ñæ“¾
+    * é§…ã®ä»˜åŠ æƒ…å ±å–å¾—
     */
     function getStationInfo(code, callback) {
         var url = apiURL + "v1/json/station/info?key=" + key;
@@ -321,17 +321,17 @@ var expGuiStationInfo = function (pObject, config) {
         if (typeof httpObj != 'undefined') {
             httpObj.abort();
         }
-        // ’ÊM
+        // é€šä¿¡
         var JSON_object = {};
         if (window.XDomainRequest) {
-            // IE—p
+            // IEç”¨
             httpObj = new XDomainRequest();
             httpObj.onload = function () {
                 JSON_object = JSON.parse(httpObj.responseText);
                 setInformationList(JSON_object);
             };
             httpObj.onerror = function () {
-                // ƒGƒ‰[‚Ìˆ—
+                // ã‚¨ãƒ©ãƒ¼æ™‚ã®å‡¦ç†
                 if (typeof callbackFunction == 'function') {
                     callbackFunction(false);
                 }
@@ -344,7 +344,7 @@ var expGuiStationInfo = function (pObject, config) {
                     JSON_object = JSON.parse(httpObj.responseText);
                     setInformationList(JSON_object);
                 } else if (httpObj.readyState == done && httpObj.status != ok) {
-                    // ƒGƒ‰[‚Ìˆ—
+                    // ã‚¨ãƒ©ãƒ¼æ™‚ã®å‡¦ç†
                     if (typeof callbackFunction == 'function') {
                         callbackFunction(false);
                     }
@@ -356,77 +356,77 @@ var expGuiStationInfo = function (pObject, config) {
     }
 
     /*
-    * ‰w•t‰Áî•ñ‚Ì‰ğÍ
+    * é§…ä»˜åŠ æƒ…å ±ã®è§£æ
     */
     function setInformationList(json) {
         var tmp_infoList = json;
         if (typeof tmp_infoList.ResultSet.Information == 'undefined') {
-            // ¸”s
+            // å¤±æ•—
             if (typeof callbackFunction == 'function') {
                 callbackFunction(false);
             }
         } else {
             for (var i = 0; i < tmp_infoList.ResultSet.Information.length; i++) {
-                // ‰ïĞ–¼‚ÌƒŠƒXƒgì¬
+                // ä¼šç¤¾åã®ãƒªã‚¹ãƒˆä½œæˆ
                 var tmp_corporationList = new Array();
                 if (typeof tmp_infoList.ResultSet.Information[i].Corporation != 'undefined') {
                     if (typeof tmp_infoList.ResultSet.Information[i].Corporation.length == 'undefined') {
-                        // 1‚Â‚¾‚¯
+                        // 1ã¤ã ã‘
                         tmp_corporationList.push(tmp_infoList.ResultSet.Information[i].Corporation.Name);
                     } else {
-                        // •¡”‚ ‚é
+                        // è¤‡æ•°ã‚ã‚‹
                         for (var j = 0; j < tmp_infoList.ResultSet.Information[i].Corporation.length; j++) {
                             tmp_corporationList.push(tmp_infoList.ResultSet.Information[i].Corporation[j].Name);
                         }
                     }
                 }
                 if (tmp_infoList.ResultSet.Information[i].Type == "rail") {
-                    // æ‚è“ü‚ê˜Hü
+                    // ä¹—ã‚Šå…¥ã‚Œè·¯ç·š
                     if (typeof tmp_infoList.ResultSet.Information[i].Line != 'undefined') {
                         if (typeof tmp_infoList.ResultSet.Information[i].Line.length == 'undefined') {
-                            // 1‚Â‚¾‚¯
+                            // 1ã¤ã ã‘
                             railInformationList.push(setInformationObject(tmp_infoList.ResultSet.Information[i].Line, tmp_corporationList[parseInt(tmp_infoList.ResultSet.Information[i].Line.corporationIndex) - 1]));
                         } else {
-                            // •¡”‚ ‚é
+                            // è¤‡æ•°ã‚ã‚‹
                             for (var j = 0; j < tmp_infoList.ResultSet.Information[i].Line.length; j++) {
                                 railInformationList.push(setInformationObject(tmp_infoList.ResultSet.Information[i].Line[j], tmp_corporationList[parseInt(tmp_infoList.ResultSet.Information[i].Line[j].corporationIndex) - 1]));
                             }
                         }
                     }
                 } else if (tmp_infoList.ResultSet.Information[i].Type == "nearrail") {
-                    // ÅŠñ˜Hü
+                    // æœ€å¯„è·¯ç·š
                     if (typeof tmp_infoList.ResultSet.Information[i].Line != 'undefined') {
                         if (typeof tmp_infoList.ResultSet.Information[i].Line.length == 'undefined') {
-                            // 1‚Â‚¾‚¯
+                            // 1ã¤ã ã‘
                             nearrailInformationList.push(setInformationObject(tmp_infoList.ResultSet.Information[i].Line, tmp_corporationList[parseInt(tmp_infoList.ResultSet.Information[i].Line.corporationIndex) - 1]));
                         } else {
-                            // •¡”‚ ‚é
+                            // è¤‡æ•°ã‚ã‚‹
                             for (var j = 0; j < tmp_infoList.ResultSet.Information[i].Line.length; j++) {
                                 nearrailInformationList.push(setInformationObject(tmp_infoList.ResultSet.Information[i].Line[j], tmp_corporationList[parseInt(tmp_infoList.ResultSet.Information[i].Line[j].corporationIndex) - 1]));
                             }
                         }
                     }
                 } else if (tmp_infoList.ResultSet.Information[i].Type == "exit") {
-                    // oŒû
+                    // å‡ºå£
                     if (typeof tmp_infoList.ResultSet.Information[i].Exit != 'undefined') {
                         if (typeof tmp_infoList.ResultSet.Information[i].Exit.length == 'undefined') {
-                            // 1‚Â‚¾‚¯
+                            // 1ã¤ã ã‘
                             exitInformationList.push(setInformationObject(tmp_infoList.ResultSet.Information[i].Exit));
                         } else {
-                            // •¡”‚ ‚é
+                            // è¤‡æ•°ã‚ã‚‹
                             for (var j = 0; j < tmp_infoList.ResultSet.Information[i].Exit.length; j++) {
                                 exitInformationList.push(setInformationObject(tmp_infoList.ResultSet.Information[i].Exit[j]));
                             }
                         }
                     }
                 } else if (tmp_infoList.ResultSet.Information[i].Type == "welfare") {
-                    // •Ÿƒİ”õ
+                    // ç¦ç¥‰è¨­å‚™
                     if (typeof tmp_infoList.ResultSet.Information[i].WelfareFacilities != 'undefined') {
                         if (typeof tmp_infoList.ResultSet.Information[i].WelfareFacilities.length == 'undefined') {
-                            // 1‚Â‚¾‚¯
+                            // 1ã¤ã ã‘
                             welfareInformationList.push(setInformationObject(tmp_infoList.ResultSet.Information[i].WelfareFacilities));
                         } else {
-                            // •¡”‚ ‚é
+                            // è¤‡æ•°ã‚ã‚‹
                             for (var j = 0; j < tmp_infoList.ResultSet.Information[i].WelfareFacilities.length; j++) {
                                 welfareInformationList.push(setInformationObject(tmp_infoList.ResultSet.Information[i].WelfareFacilities[j]));
                             }
@@ -434,7 +434,7 @@ var expGuiStationInfo = function (pObject, config) {
                     }
                 }
             }
-            // ¬Œ÷
+            // æˆåŠŸ
             if (typeof callbackFunction == 'function') {
                 callbackFunction(true);
             }
@@ -442,7 +442,7 @@ var expGuiStationInfo = function (pObject, config) {
     }
 
     /*
-    * ‰wƒf[ƒ^ƒIƒuƒWƒFƒNƒg‚Ìì¬
+    * é§…ãƒ‡ãƒ¼ã‚¿ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
     */
     function setInformationObject(infoObj, corporation) {
         var tmp_info = new Object();
@@ -470,7 +470,7 @@ var expGuiStationInfo = function (pObject, config) {
     }
 
     /*
-    * ‰w•t‰Áî•ñ‚Ìæ“¾
+    * é§…ä»˜åŠ æƒ…å ±ã®å–å¾—
     */
     function getInformationList(type) {
         var tmpInformationList = new Array();
@@ -495,10 +495,10 @@ var expGuiStationInfo = function (pObject, config) {
     }
 
     /*
-    * ‰w•t‰Áî•ñƒIƒuƒWƒFƒNƒg‚Ìæ“¾
+    * é§…ä»˜åŠ æƒ…å ±ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å–å¾—
     */
     function getInformationObject(name, type) {
-        // ƒIƒuƒWƒFƒNƒgƒRƒs[—pƒCƒ“ƒ‰ƒCƒ“ŠÖ”
+        // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚³ãƒ”ãƒ¼ç”¨ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³é–¢æ•°
         function clone(obj) {
             var f = function () { };
             f.prototype = obj;
@@ -532,7 +532,7 @@ var expGuiStationInfo = function (pObject, config) {
     }
 
     /*
-    * ŠÂ‹«İ’è
+    * ç’°å¢ƒè¨­å®š
     */
     function setConfigure(name, value) {
         if (name.toLowerCase() == String("apiURL").toLowerCase()) {
@@ -559,7 +559,7 @@ var expGuiStationInfo = function (pObject, config) {
     }
 
     /*
-    * —˜—p‚Å‚«‚éŠÖ”ƒŠƒXƒg
+    * åˆ©ç”¨ã§ãã‚‹é–¢æ•°ãƒªã‚¹ãƒˆ
     */
     this.searchStation = searchStation;
     this.getStation = getStation;
@@ -573,7 +573,7 @@ var expGuiStationInfo = function (pObject, config) {
     this.setConfigure = setConfigure;
 
     /*
-    * ’è”ƒŠƒXƒg
+    * å®šæ•°ãƒªã‚¹ãƒˆ
     */
     this.DIRECTION_UP = "up";
     this.DIRECTION_DOWN = "down";
