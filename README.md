@@ -33,7 +33,6 @@
  ・日付入力パーツ<br>
  ・駅名入力パーツ<br>
  ・探索条件パーツ<br>
- ・経路探索パーツ<br>
 
  `<link class="css" rel="stylesheet" type="text/css" href="expCss/コンポーネント名.css">`
 
