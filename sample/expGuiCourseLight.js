@@ -2,9 +2,9 @@
  *  駅すぱあと Web サービス
  *  経路探索パーツ
  *  サンプルコード
- *  http://webui.ekispert.com/doc/
+ *  https://github.com/EkispertWebService/GUI-LightEdition
  *  
- *  Version:2014-08-11
+ *  Version:2016-02-22
  *  
  *  Copyright (C) Val Laboratory Corporation. All rights reserved.
  **/
@@ -272,7 +272,7 @@ var expGuiCourseLight = function (pObject, config) {
     };
 
     /*
-    * 駅すぱあと for WEBのURLを取得
+    * 駅すぱあと for webのURLを取得
     */
     function getResourceURI() {
         if (typeof result != 'undefined') {
